@@ -93,6 +93,20 @@
   padding: 1.35rem 1.35rem 1.5rem;
 }
 
+.admin-module-container {
+  padding: 0;
+}
+
+.admin-module-content {
+  padding: 1.35rem 1.35rem 1.5rem;
+}
+
+@media (max-width: 1100px) {
+  .admin-module-content {
+    padding: 1.15rem 1.1rem 1.25rem;
+  }
+}
+
 @media (max-width: 1100px) {
   .admin-system-hero {
     padding: 1.15rem 1.1rem 1.25rem;

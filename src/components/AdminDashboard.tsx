@@ -418,91 +418,41 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user }) => {
 
       <div className="admin-main-stack">
         <div className="admin-system-shell">
-          <section className="admin-system-hero">
-            <div className="admin-modules-header">
-              <p className="admin-system-kicker">Módulos activos</p>
-              <h1 className="admin-system-title">Gestiona cada área desde este panel</h1>
-              <p className="admin-system-subtitle">
-                Selecciona un módulo para abrir su vista principal y continuar con tu
-                trabajo.
-              </p>
-              <div className="admin-system-meta" aria-label="Estado del sistema">
-                <span className="admin-chip">Rol: {displayRole}</span>
-                <span className="admin-chip">Módulos activos: {availableModules.length}</span>
-              </div>
-            </div>
+          <section className="admin-system-hero admin-module-container">
+            <div className="admin-module-content">
+              {activeModule === "labs" && (
+                <GestionEspacios onAuditLog={addAuditLog} />
+              )}
 
-                        <div className="admin-modules-grid" role="list">
-              {availableModules.map((module) => {
-                const Icon = module.icon;
-                const isActive = activeModule === module.id;
-                return (
-                  <button
-                    key={module.id}
-                    type="button"
-                    role="listitem"
-                    className={`admin-module-card ${isActive ? "is-active" : ""}`}
-                    onClick={() => setActiveModule(module.id)}
-                    aria-pressed={isActive}
-                  >
-                    <span
-                      className={`admin-module-icon admin-module-${module.color}`}
-                      aria-hidden
-                    >
-                      <Icon className="admin-module-icon-svg" />
-                    </span>
-                    <div className="admin-module-text">
-                      <div className="admin-module-row">
-                        <p className="admin-module-name">{module.name}</p>
-                        {isActive ? (
-                          <span className="admin-module-pill">En uso</span>
-                        ) : null}
-                      </div>
-                      <p className="admin-module-desc">{module.description}</p>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+              {activeModule === "schedules" && <GestionHorarios />}
+
+              {activeModule === "sanctions" && (
+                <GestionSanciones onAuditLog={addAuditLog} currentUser={user} />
+              )}
+
+              {activeModule === "reservas" && (
+                <GestionReservas onAuditLog={addAuditLog} currentUser={user} />
+              )}
+
+              {activeModule === "users" && (
+                <GestionUsuarios onAuditLog={addAuditLog} />
+              )}
+
+              {activeModule === "incidencias" && (
+                <GestionIncidencias onAuditLog={addAuditLog} currentUser={user} />
+              )}
+
+              {activeModule === "reports" && (
+                <GestionReportes onAuditLog={addAuditLog} />
+              )}
+
+              {activeModule === "audit" && (
+                <GestionAuditoria onAuditLog={addAuditLog} />
+              )}
+              </div>
           </section>
-
-          <div className="admin-panels">
-            <div className="admin-content-shell">
-              <div className="admin-content">
-                {activeModule === "labs" && (
-                  <GestionEspacios onAuditLog={addAuditLog} />
-                )}
-
-                {activeModule === "schedules" && <GestionHorarios />}
-
-                {activeModule === "sanctions" && (
-                  <GestionSanciones onAuditLog={addAuditLog} currentUser={user} />
-                )}
-
-                {activeModule === "reservas" && (
-                  <GestionReservas onAuditLog={addAuditLog} currentUser={user} />
-                )}
-
-                {activeModule === "users" && (
-                  <GestionUsuarios onAuditLog={addAuditLog} />
-                )}
-
-                {activeModule === "incidencias" && (
-                  <GestionIncidencias onAuditLog={addAuditLog} currentUser={user} />
-                )}
-
-                {activeModule === "reports" && (
-                  <GestionReportes onAuditLog={addAuditLog} />
-                )}
-
-                {activeModule === "audit" && (
-                  <GestionAuditoria onAuditLog={addAuditLog} />
-                )}
-              </div>
-            </div>
           </div>
         </div>
       </div>
-    </div>
   );
 };
