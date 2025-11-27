@@ -220,11 +220,6 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user }) => {
     [availableModules]
   );
 
-  const activeModuleDefinition = useMemo(
-    () => availableModules.find((module) => module.id === activeModule),
-    [activeModule, availableModules]
-  );
-
   const addAuditLog = useCallback(() => {}, []);
 
   const handleLogout = useCallback(async () => {
@@ -422,53 +417,52 @@ export const AdminDashboard: React.FC<AdminDashboardProps> = ({ user }) => {
       </aside>
 
       <div className="admin-main-stack">
-<div className="admin-system-shell">
+        <div className="admin-system-shell">
           <section className="admin-system-hero">
-            <div className="admin-system-headings">
-              <p className="admin-system-kicker">Sistema</p>
-              <h1 className="admin-system-title">Panel de gestión</h1>
+            <div className="admin-modules-header">
+              <p className="admin-system-kicker">Módulos activos</p>
+              <h1 className="admin-system-title">Gestiona cada área desde este panel</h1>
               <p className="admin-system-subtitle">
-                Centraliza los módulos administrativos en esta versión de escritorio
-                optimizada para Electron.
+                Selecciona un módulo para abrir su vista principal y continuar con tu
+                trabajo.
               </p>
-
               <div className="admin-system-meta" aria-label="Estado del sistema">
                 <span className="admin-chip">Rol: {displayRole}</span>
                 <span className="admin-chip">Módulos activos: {availableModules.length}</span>
-                {activeModuleDefinition ? (
-                  <span className="admin-chip admin-chip-ghost">
-                    En uso: {activeModuleDefinition.name}
-                  </span>
-                ) : null}
               </div>
             </div>
 
-            <div className="admin-system-grid" role="presentation">
-              <div className="admin-system-card">
-                <p className="admin-system-card-label">Cuenta activa</p>
-                <p className="admin-system-card-value">{user.user_metadata.name}</p>
-                <p className="admin-system-card-helper">
-                  {user.email || "Sesión local"}
-                </p>
-              </div>
-              <div className="admin-system-card">
-                <p className="admin-system-card-label">Modo de sesión</p>
-                <p className="admin-system-card-value">
-                  {shouldNotifyBackend ? "Backend conectado" : "Sesión interna"}
-                </p>
-                <p className="admin-system-card-helper">
-                  {shouldNotifyBackend
-                    ? "Los cierres notifican al servidor para mantener coherencia."
-                    : "Operando sin dependencia directa del backend."}
-                </p>
-              </div>
-              <div className="admin-system-card">
-                <p className="admin-system-card-label">Organización</p>
-                <p className="admin-system-card-value">{visibleNavGroups.length} grupos</p>
-                <p className="admin-system-card-helper">
-                  Navega por reservas, gestiones y reportes desde un único lugar.
-                </p>
-              </div>
+                        <div className="admin-modules-grid" role="list">
+              {availableModules.map((module) => {
+                const Icon = module.icon;
+                const isActive = activeModule === module.id;
+                return (
+                  <button
+                    key={module.id}
+                    type="button"
+                    role="listitem"
+                    className={`admin-module-card ${isActive ? "is-active" : ""}`}
+                    onClick={() => setActiveModule(module.id)}
+                    aria-pressed={isActive}
+                  >
+                    <span
+                      className={`admin-module-icon admin-module-${module.color}`}
+                      aria-hidden
+                    >
+                      <Icon className="admin-module-icon-svg" />
+                    </span>
+                    <div className="admin-module-text">
+                      <div className="admin-module-row">
+                        <p className="admin-module-name">{module.name}</p>
+                        {isActive ? (
+                          <span className="admin-module-pill">En uso</span>
+                        ) : null}
+                      </div>
+                      <p className="admin-module-desc">{module.description}</p>
+                    </div>
+                  </button>
+                );
+              })}
             </div>
           </section>
 
