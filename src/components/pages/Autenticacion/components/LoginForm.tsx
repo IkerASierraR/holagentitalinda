@@ -39,7 +39,7 @@ export const LoginForm: FC<LoginFormProps> = ({
   return (
     <div className="space-y-6">
       <form className="login-form space-y-4" onSubmit={onSubmit}>
-        <div className="login-form-group space-y-2">
+        <div className="login-form-group space-y-1">
           <label className="login-label" htmlFor="identifier">
             Código universitario o correo electrónico
           </label>
@@ -57,7 +57,7 @@ export const LoginForm: FC<LoginFormProps> = ({
           </div>
         </div>
 
-        <div className="login-form-group space-y-2">
+        <div className="login-form-group space-y-1">
           <label className="login-label" htmlFor="password">
             Contraseña
           </label>
@@ -76,7 +76,7 @@ export const LoginForm: FC<LoginFormProps> = ({
           </div>
         </div>
 
-        <div className="login-form-group space-y-2">
+        <div className="login-form-group space-y-1">
           <label className="login-label" htmlFor="captcha">
             Código de seguridad
           </label>
