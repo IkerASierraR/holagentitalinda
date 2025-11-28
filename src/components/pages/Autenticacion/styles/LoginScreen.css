@@ -1,12 +1,13 @@
 .login-container {
   min-height: 100vh;
+  height: 100vh;
   background: linear-gradient(135deg, #eff6ff 0%, #e0e7ff 100%);
   display: flex;
   align-items: center;
   justify-content: center;
   padding: clamp(0.75rem, 2vh, 1.5rem);
   animation: gradientShift 8s ease-in-out infinite;
-  overflow: auto;
+  overflow: hidden;
 }
 
 @keyframes gradientShift {
@@ -28,10 +29,12 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: clamp(0.35rem, 0.6vh, 0.65rem);
+  gap: clamp(0.3rem, 0.6vh, 0.65rem);
   margin: 0 auto;
   animation: slideUpFade 0.6s ease-out;
-  overflow: visible;
+  max-height: calc(100vh - clamp(0.75rem, 2vh, 1.5rem) * 2);
+  overflow-y: auto;
+  padding: clamp(0.75rem, 1.5vh, 1.2rem);
 }
 
 @keyframes slideUpFade {
@@ -188,7 +191,7 @@
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
   border: 1px solid #e5e7eb;
   padding: 1rem;
-  margin-top: 0.65rem;
+  margin-top: 0.5rem;
   animation: cardAppear 0.8s ease-out 0.3s both;
 }
 
