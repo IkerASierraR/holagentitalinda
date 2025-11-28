@@ -44,9 +44,6 @@ export const LoginHeader: FC<LoginHeaderProps> = ({ selectedType, subtitleText }
       >
         {subtitleText}
       </p>
-      <p className="login-description">
-        Utiliza tus credenciales institucionales para ingresar.
-      </p>
     </div>
   );
 };
