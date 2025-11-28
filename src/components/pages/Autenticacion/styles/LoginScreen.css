@@ -5,7 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: clamp(0.5rem, 1.5vh, 1.25rem);
+  padding: clamp(1rem, 2vh, 1.75rem);
   animation: gradientShift 8s ease-in-out infinite;
   overflow: hidden;
 }
@@ -22,18 +22,26 @@
 .login-wrapper {
   width: clamp(340px, 88vw, 420px);
   max-width: 440px;
-  height: min(720px, calc(100vh - clamp(0.5rem, 1.5vh, 1.25rem) * 2));
-  background: rgba(255, 255, 255, 0.72);
-  border-radius: 1.25rem;
-  box-shadow: 0 25px 35px -10px rgba(59, 130, 246, 0.25);
-  backdrop-filter: blur(6px);
+  height: min(760px, calc(100vh - clamp(1rem, 2vh, 1.75rem) * 2));
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: clamp(0.25rem, 0.6vh, 0.6rem);
   margin: 0 auto;
   animation: slideUpFade 0.6s ease-out;
-  padding: clamp(0.65rem, 1.4vh, 1.1rem);
+  padding: clamp(0.75rem, 1.8vh, 1.25rem);
+}
+
+.login-panel {
+  background: #ffffff;
+  border-radius: 1.15rem;
+  box-shadow: 0 25px 35px -12px rgba(59, 130, 246, 0.22);
+  border: 1px solid #e5e7eb;
+  backdrop-filter: blur(8px);
+  padding: clamp(1.25rem, 2.6vh, 1.85rem) clamp(1.1rem, 2.4vw, 1.75rem);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1.1rem, 2vh, 1.5rem);
+  height: 100%;
 }
 
 @keyframes slideUpFade {
@@ -49,6 +57,7 @@
 
 .login-header {
   text-align: center;
+  padding-top: 0.35rem;
 }
 
 .login-logo {
@@ -59,7 +68,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 1rem;
+  margin-bottom: clamp(0.85rem, 1.4vh, 1.15rem);
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   animation: logoPulse 2s ease-in-out infinite;
 }
@@ -169,7 +178,7 @@
 
 .login-description {
   color: #6b7280;
-  margin-top: 0.35rem;
+  margin-top: 0.5rem;
   animation: descriptionFade 0.8s ease-out 0.6s both;
 }
 
@@ -185,13 +194,16 @@
 }
 
 .login-card {
-  background-color: white;
-  border-radius: 0.75rem;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  background-color: #f9fafb;
+  border-radius: 0.85rem;
   border: 1px solid #e5e7eb;
-  padding: clamp(0.9rem, 1.5vw, 1.1rem);
-  margin-top: 0.5rem;
+  padding: clamp(1rem, 1.6vw, 1.25rem);
+  margin-top: 0;
   animation: cardAppear 0.8s ease-out 0.3s both;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(1rem, 1.6vh, 1.25rem);
+  flex: 1;
 }
 
 @media (max-height: 900px) {
